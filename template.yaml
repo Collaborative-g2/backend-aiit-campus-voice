@@ -12,31 +12,50 @@ Globals:
     MemorySize: 128
 
 Resources:
-  HelloWorldFunction:
+  HealthFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: hello_world/
-      Handler: app.lambda_handler
+      Handler: app.controller.health_handler
       Runtime: python3.9
-      Architectures:
-        - x86_64
+      CodeUri: .
       Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+        TopApi:
+          Type: Api
           Properties:
-            Path: /hello
-            Method: get
-
+            Path: /health
+            Method: GET
+  TopApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.controller.top_handler
+      Runtime: python3.9
+      CodeUri: .
+      Events:
+        TopApi:
+          Type: Api
+          Properties:
+            Path: /top
+            Method: GET
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldApi:
+  HealthApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/prod/health/"
+  HealthFunction:
+    Description: "HealthLambda Function ARN"
+    Value: !GetAtt HealthFunction.Arn
+  HealthFunctionIamRole:
+    Description: "Implicit IAM Role created for Health function"
+    Value: !GetAtt HealthFunctionRole.Arn
+
+  TopApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/prod/top/"
+  TopFunction:
     Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
+    Value: !GetAtt TopFunction.Arn
+  TopFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+    Value: !GetAtt TopFunctionRole.Arn
