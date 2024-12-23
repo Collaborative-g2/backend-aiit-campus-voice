@@ -1,0 +1,372 @@
+[
+    {
+        "id": "1",
+        "subject_id": "ISA001",
+        "term": "2024年度春学期",
+        "rating": 4.5,
+        "workload": "中",
+        "comment": "ネットワーク技術の基礎が理解しやすい授業。",
+        "created": "2024-12-24T10:00:00Z"
+    },
+    {
+        "id": "2",
+        "subject_id": "ISA002",
+        "term": "2024年度春学期",
+        "rating": 4.0,
+        "workload": "多い",
+        "comment": "オブジェクト指向の演習が多く、実践的。",
+        "created": "2024-12-24T10:05:00Z"
+    },
+    {
+        "id": "3",
+        "subject_id": "ISA003",
+        "term": "2024年度春学期",
+        "rating": 4.8,
+        "workload": "多い",
+        "comment": "プロジェクトの管理スキルが身につく。",
+        "created": "2024-12-24T10:10:00Z"
+    },
+    {
+        "id": "4",
+        "subject_id": "ISA004",
+        "term": "2024年度春学期",
+        "rating": 4.3,
+        "workload": "普通",
+        "comment": "情報アーキテクチャの基礎をしっかり学べる。",
+        "created": "2024-12-24T10:15:00Z"
+    },
+    {
+        "id": "5",
+        "subject_id": "ISA005",
+        "term": "2024年度秋学期",
+        "rating": 4.7,
+        "workload": "少ない",
+        "comment": "セキュリティの重要性が深く理解できる。",
+        "created": "2024-12-24T10:20:00Z"
+    },
+    {
+        "id": "6",
+        "subject_id": "ISA006",
+        "term": "2024年度秋学期",
+        "rating": 4.2,
+        "workload": "多い",
+        "comment": "システムソフトウェアの構造がよくわかる。",
+        "created": "2024-12-24T10:25:00Z"
+    },
+    {
+        "id": "7",
+        "subject_id": "ISA007",
+        "term": "2024年度秋学期",
+        "rating": 4.1,
+        "workload": "中",
+        "comment": "技術者としての倫理観を深められる。",
+        "created": "2024-12-24T10:30:00Z"
+    },
+    {
+        "id": "8",
+        "subject_id": "ISA008",
+        "term": "2024年度秋学期",
+        "rating": 4.6,
+        "workload": "やや多い",
+        "comment": "フレームワークの設計思想が学べる。",
+        "created": "2024-12-24T10:35:00Z"
+    },
+    {
+        "id": "9",
+        "subject_id": "ISA009",
+        "term": "2024年度秋学期",
+        "rating": 4.4,
+        "workload": "普通",
+        "comment": "サービスサイエンスの理論を実例で学ぶ。",
+        "created": "2024-12-24T10:40:00Z"
+    },
+    {
+        "id": "10",
+        "subject_id": "ISA010",
+        "term": "2024年度秋学期",
+        "rating": 4.3,
+        "workload": "中",
+        "comment": "コミュニケーション技術のスキルアップに最適。",
+        "created": "2024-12-24T10:45:00Z"
+    },
+    {
+        "id": "11",
+        "subject_id": "ISA011",
+        "term": "2024年度秋学期",
+        "rating": 4.5,
+        "workload": "やや多い",
+        "comment": "情報セキュリティの特別な観点が学べる。",
+        "created": "2024-12-24T10:50:00Z"
+    },
+    {
+        "id": "12",
+        "subject_id": "ISA012",
+        "term": "2024年度秋学期",
+        "rating": 4.7,
+        "workload": "少ない",
+        "comment": "ソフトウェア開発の新しいアプローチを学べる。",
+        "created": "2024-12-24T10:55:00Z"
+    },
+    {
+        "id": "13",
+        "subject_id": "ISA013",
+        "term": "2024年度秋学期",
+        "rating": 4.6,
+        "workload": "中",
+        "comment": "プロジェクトの特別講義で実例を学べる。",
+        "created": "2024-12-24T11:00:00Z"
+    },
+    {
+        "id": "14",
+        "subject_id": "ISA014",
+        "term": "2024年度秋学期",
+        "rating": 4.8,
+        "workload": "多い",
+        "comment": "データ分析の基礎と応用を徹底的に学べる。",
+        "created": "2024-12-24T11:05:00Z"
+    },
+    {
+        "id": "15",
+        "subject_id": "ISA015",
+        "term": "2024年度秋学期",
+        "rating": 4.3,
+        "workload": "普通",
+        "comment": "ネットワークシステムに特化した内容。",
+        "created": "2024-12-24T11:10:00Z"
+    },
+    {
+        "id": "16",
+        "subject_id": "ISA016",
+        "term": "2024年度秋学期",
+        "rating": 4.9,
+        "workload": "多い",
+        "comment": "アジャイル開発の実践的な内容。",
+        "created": "2024-12-24T11:15:00Z"
+    },
+    {
+        "id": "17",
+        "subject_id": "ISA017",
+        "term": "2024年度秋学期",
+        "rating": 4.2,
+        "workload": "普通",
+        "comment": "システムプログラミングの深い知識を得られる。",
+        "created": "2024-12-24T11:20:00Z"
+    },
+    {
+        "id": "18",
+        "subject_id": "ISA018",
+        "term": "2024年度秋学期",
+        "rating": 4.6,
+        "workload": "少ない",
+        "comment": "情報アーキテクチャの実践的な内容。",
+        "created": "2024-12-24T11:25:00Z"
+    },
+    {
+        "id": "19",
+        "subject_id": "ISA019",
+        "term": "2024年度秋学期",
+        "rating": 4.1,
+        "workload": "中",
+        "comment": "特論3では応用技術を学べる。",
+        "created": "2024-12-24T11:30:00Z"
+    },
+    {
+        "id": "20",
+        "subject_id": "ISA020",
+        "term": "2024年度秋学期",
+        "rating": 4.5,
+        "workload": "少ない",
+        "comment": "グローバルな視点でのコミュニケーションを学ぶ。",
+        "created": "2024-12-24T11:35:00Z"
+    }
+　{
+        "id": "21",
+        "subject_id": "ISA021",
+        "term": "2024年度秋学期",
+        "rating": 4.2,
+        "workload": "中",
+        "comment": "データベースの設計と管理に必要な知識を学べる。",
+        "created": "2024-12-24T11:40:00Z"
+    },
+    {
+        "id": "22",
+        "subject_id": "ISA022",
+        "term": "2024年度秋学期",
+        "rating": 4.3,
+        "workload": "やや多い",
+        "comment": "情報ビジネスの戦略について学べる。",
+        "created": "2024-12-24T11:45:00Z"
+    },
+    {
+        "id": "23",
+        "subject_id": "ISA023",
+        "term": "2024年度秋学期",
+        "rating": 4.0,
+        "workload": "中",
+        "comment": "OSSの実践的な使い方が学べる。",
+        "created": "2024-12-24T11:50:00Z"
+    },
+    {
+        "id": "24",
+        "subject_id": "ISA024",
+        "term": "2024年度秋学期",
+        "rating": 4.6,
+        "workload": "やや多い",
+        "comment": "クラウドサーバの構築方法を実践的に学べる。",
+        "created": "2024-12-24T11:55:00Z"
+    },
+    {
+        "id": "25",
+        "subject_id": "ISA025",
+        "term": "2024年度秋学期",
+        "rating": 4.4,
+        "workload": "普通",
+        "comment": "産業技術の理解が深まる。",
+        "created": "2024-12-24T12:00:00Z"
+    },
+    {
+        "id": "26",
+        "subject_id": "ISA026",
+        "term": "2024年度秋学期",
+        "rating": 4.7,
+        "workload": "多い",
+        "comment": "クラウドインフラに関する基礎から応用まで学べる。",
+        "created": "2024-12-24T12:05:00Z"
+    },
+    {
+        "id": "27",
+        "subject_id": "ISA027",
+        "term": "2024年度秋学期",
+        "rating": 4.2,
+        "workload": "中",
+        "comment": "データ分析の実践的なアプローチが学べる。",
+        "created": "2024-12-24T12:10:00Z"
+    },
+    {
+        "id": "28",
+        "subject_id": "ISA028",
+        "term": "2024年度秋学期",
+        "rating": 4.1,
+        "workload": "少ない",
+        "comment": "情報技術者としての倫理について学べる。",
+        "created": "2024-12-24T12:15:00Z"
+    },
+    {
+        "id": "29",
+        "subject_id": "ISA029",
+        "term": "2024年度秋学期",
+        "rating": 4.5,
+        "workload": "普通",
+        "comment": "プロジェクトマネジメントの実践的な方法を学べる。",
+        "created": "2024-12-24T12:20:00Z"
+    },
+    {
+        "id": "30",
+        "subject_id": "ISA030",
+        "term": "2024年度秋学期",
+        "rating": 4.8,
+        "workload": "多い",
+        "comment": "国際開発の現状と未来について深く学べる。",
+        "created": "2024-12-24T12:25:00Z"
+    },
+    {
+        "id": "31",
+        "subject_id": "ISA031",
+        "term": "2024年度秋学期",
+        "rating": 4.3,
+        "workload": "やや多い",
+        "comment": "情報セキュリティに関する最新の知識が得られる。",
+        "created": "2024-12-24T12:30:00Z"
+    },
+    {
+        "id": "32",
+        "subject_id": "ISA032",
+        "term": "2024年度秋学期",
+        "rating": 4.4,
+        "workload": "普通",
+        "comment": "コラボレイティブ開発の手法を深く学べる。",
+        "created": "2024-12-24T12:35:00Z"
+    },
+    {
+        "id": "33",
+        "subject_id": "ISA033",
+        "term": "2024年度秋学期",
+        "rating": 4.6,
+        "workload": "少ない",
+        "comment": "プロジェクトマネジメントの理論を応用する。",
+        "created": "2024-12-24T12:40:00Z"
+    },
+    {
+        "id": "34",
+        "subject_id": "ISA034",
+        "term": "2024年度秋学期",
+        "rating": 4.2,
+        "workload": "普通",
+        "comment": "セキュアプログラミングの基礎から学べる。",
+        "created": "2024-12-24T12:45:00Z"
+    },
+    {
+        "id": "35",
+        "subject_id": "ISA035",
+        "term": "2024年度秋学期",
+        "rating": 4.3,
+        "workload": "やや多い",
+        "comment": "デザイン思考に基づく問題解決の手法を学べる。",
+        "created": "2024-12-24T12:50:00Z"
+    },
+    {
+        "id": "36",
+        "subject_id": "ISA036",
+        "term": "2024年度秋学期",
+        "rating": 4.5,
+        "workload": "少ない",
+        "comment": "データマネジメントに関する基礎的な知識が得られる。",
+        "created": "2024-12-24T12:55:00Z"
+    },
+    {
+        "id": "37",
+        "subject_id": "ISA037",
+        "term": "2024年度秋学期",
+        "rating": 4.1,
+        "workload": "普通",
+        "comment": "システム特論2の内容がしっかりと理解できる。",
+        "created": "2024-12-24T13:00:00Z"
+    },
+    {
+        "id": "38",
+        "subject_id": "ISA038",
+        "term": "2024年度秋学期",
+        "rating": 4.6,
+        "workload": "多い",
+        "comment": "IoT開発の最新技術を学べる。",
+        "created": "2024-12-24T13:05:00Z"
+    },
+    {
+        "id": "39",
+        "subject_id": "ISA039",
+        "term": "2024年度秋学期",
+        "rating": 4.2,
+        "workload": "やや多い",
+        "comment": "情報ビジネスの特別講義での学びが豊富。",
+        "created": "2024-12-24T13:10:00Z"
+    },
+    {
+        "id": "40",
+        "subject_id": "ISA040",
+        "term": "2024年度秋学期",
+        "rating": 4.3,
+        "workload": "普通",
+        "comment": "システム管理運用の基礎がしっかりと学べる。",
+        "created": "2024-12-24T13:15:00Z"
+    },
+    {
+        "id": "41",
+        "subject_id": "ISA041",
+        "term": "2024年度秋学期",
+        "rating": 4.7,
+        "workload": "少ない",
+        "comment": "国際経営に関する深い知識が得られる。",
+        "created": "2024-12-24T13:20:00Z"
+    }
+]
+
