@@ -12,22 +12,23 @@ Globals:
     MemorySize: 128
 
 Resources:
+  # Function単位でLambda関数を定義する.
   HealthFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
-      Handler: app.controller.health_handler
+      Handler: app.controller.health_handler # app/controller#health_handlerメソッド
       Runtime: python3.9
       CodeUri: .
       Events:
         TopApi:
           Type: Api
           Properties:
-            Path: /health
+            Path: /health 
             Method: GET
   TopApiFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: app.controller.top_handler
+      Handler: app.controller.top_handler # app/controller#top_handlerメソッド
       Runtime: python3.9
       CodeUri: .
       Events:
@@ -37,15 +38,15 @@ Resources:
             Path: /top
             Method: GET
 Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  # API Gatewayのエンドポイントを出力
   HealthApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/prod/health/"
+  # Lambda関数のAmazon Resouce Nameを出力
   HealthFunction:
     Description: "HealthLambda Function ARN"
     Value: !GetAtt HealthFunction.Arn
+  # Lambda関数に関連付けられたIAMロールのARNを出力
   HealthFunctionIamRole:
     Description: "Implicit IAM Role created for Health function"
     Value: !GetAtt HealthFunctionRole.Arn
