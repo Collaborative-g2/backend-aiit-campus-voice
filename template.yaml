@@ -40,6 +40,20 @@ Resources:
           Properties:
             Path: /top
             Method: get
+  SearchFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: app.controller.search_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Events:
+        Search:
+          Type: Api
+          Properties:
+            Path: /search
+            Method: get
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
