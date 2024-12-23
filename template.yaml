@@ -40,7 +40,21 @@ Resources:
           Properties:
             Path: /top
             Method: get
-
+  SearchFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: app.controller.search_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Events:
+        Search:
+          Type: Api
+          Properties:
+            Path: /search
+            Method: get
+            
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
@@ -63,3 +77,12 @@ Outputs:
   TopFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt TopFunctionRole.Arn
+  SearchApi:
+    Description: "API Gateway endpoint URL for Search function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/search/"
+  SearchFunction:
+    Description: "Search Lambda Function ARN"
+    Value: !GetAtt SearchFunction.Arn
+  SearchFunctionIamRole:
+    Description: "Implicit IAM Role created for Search function"
+    Value: !GetAtt SearchFunctionRole.Arn
