@@ -11,6 +11,7 @@ def health_handler(event, context):
     }
 
 def top_handler(event, context):
+    # DynamoDBから取得する代わりにモックデータを使用
     subjects = get_subjects()
     return {
         "statusCode": 200,
