@@ -54,6 +54,37 @@ Resources:
           Properties:
             Path: /search
             Method: get
+  SubjectTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SubjectTable
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+  DynamoDBAccessPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: DynamoDBAccessPolicy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:Scan
+              - dynamodb:Query
+            Resource: !GetAtt SubjectTable.Arn
+      Roles:
+        - !Ref HealthFunctionRole
+        - !Ref TopFunctionRole
+        - !Ref SearchFunctionRole
             
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -86,3 +117,6 @@ Outputs:
   SearchFunctionIamRole:
     Description: "Implicit IAM Role created for Search function"
     Value: !GetAtt SearchFunctionRole.Arn
+  SubjectTable:
+    Description: "SubjectTable DynamoDB Table ARN"
+    Value: !GetAtt SubjectTable.Arn
