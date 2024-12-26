@@ -8,9 +8,10 @@ def health_handler(event, context):
         "body": json.dumps({
             "message": "ok"
         }),
+        
     }
 
-def top_handler(event, context):
+def subject_handler(event, context):
     # DynamoDBから取得する代わりにモックデータを使用
     subjects = get_subjects()
     return {

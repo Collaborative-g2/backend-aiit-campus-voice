@@ -26,19 +26,19 @@ Resources:
           Properties:
             Path: /health
             Method: get
-  TopFunction:
+  SubjectFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: .
-      Handler: app.controller.top_handler
+      Handler: app.controller.subject_handler
       Runtime: python3.9
       Architectures:
         - x86_64
       Events:
-        Top:
+        Subject:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /top
+            Path: /subjects
             Method: get
   SearchFunction:
     Type: AWS::Serverless::Function
@@ -83,7 +83,7 @@ Resources:
             Resource: !GetAtt SubjectTable.Arn
       Roles:
         - !Ref HealthFunctionRole
-        - !Ref TopFunctionRole
+        - !Ref SubjectFunctionRole
         - !Ref SearchFunctionRole
             
 Outputs:
@@ -99,15 +99,15 @@ Outputs:
   HealthFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt HealthFunctionRole.Arn
-  TopApi:
+  SubjectApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/top/"
-  TopFunction:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/subjects/"
+  SubjectFunction:
     Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt TopFunction.Arn
-  TopFunctionIamRole:
+    Value: !GetAtt SubjectFunction.Arn
+  SubjectFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt TopFunctionRole.Arn
+    Value: !GetAtt SubjectFunctionRole.Arn
   SearchApi:
     Description: "API Gateway endpoint URL for Search function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/search/"
