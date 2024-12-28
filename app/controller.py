@@ -10,33 +10,24 @@ def health_handler(event, context):
         }),
         
     }
-
+    
 def subject_handler(event, context):
-    # DynamoDBから取得する代わりにモックデータを使用
+    keyword = event.get('queryStringParameters', {}).get('q', '')
     subjects = get_subjects()
+    
+    if keyword:
+        filtered_subjects = [
+            s for s in subjects 
+            if keyword in s['subject_name']
+        ][:10]  # キーワード検索結果の上位10件
+    else:
+        filtered_subjects = subjects[:10]  # 全件取得の場合の上位10件
+    
     return {
         "statusCode": 200,
-        "headers": {"Content-Type": "application/json"},
-        "body": json.dumps(format_response(subjects))
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        },
+        "body": json.dumps(format_response(filtered_subjects))
     }
-
-def search_handler(event, context):
-   keyword = event.get('queryStringParameters', {}).get('q', '')
-   subjects = get_subjects()
-   
-   if keyword:
-       filtered_subjects = [
-           s for s in subjects 
-           if keyword in s['subject_name']
-       ]
-   else:
-       filtered_subjects = subjects
-
-   return {
-       "statusCode": 200,
-       "headers": {
-           "Content-Type": "application/json",
-           "Access-Control-Allow-Origin": "*"
-       },
-       "body": json.dumps(format_response(filtered_subjects))
-   }

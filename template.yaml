@@ -40,20 +40,6 @@ Resources:
           Properties:
             Path: /subjects
             Method: get
-  SearchFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: .
-      Handler: app.controller.search_handler
-      Runtime: python3.9
-      Architectures:
-        - x86_64
-      Events:
-        Search:
-          Type: Api
-          Properties:
-            Path: /search
-            Method: get
   SubjectTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -84,7 +70,6 @@ Resources:
       Roles:
         - !Ref HealthFunctionRole
         - !Ref SubjectFunctionRole
-        - !Ref SearchFunctionRole
             
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -101,22 +86,13 @@ Outputs:
     Value: !GetAtt HealthFunctionRole.Arn
   SubjectApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/subjects/"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/subjects?q=subject_name"
   SubjectFunction:
     Description: "Hello World Lambda Function ARN"
     Value: !GetAtt SubjectFunction.Arn
   SubjectFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt SubjectFunctionRole.Arn
-  SearchApi:
-    Description: "API Gateway endpoint URL for Search function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/search/"
-  SearchFunction:
-    Description: "Search Lambda Function ARN"
-    Value: !GetAtt SearchFunction.Arn
-  SearchFunctionIamRole:
-    Description: "Implicit IAM Role created for Search function"
-    Value: !GetAtt SearchFunctionRole.Arn
   SubjectTable:
     Description: "SubjectTable DynamoDB Table ARN"
     Value: !GetAtt SubjectTable.Arn
