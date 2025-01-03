@@ -51,6 +51,41 @@ Resources:
         - AttributeName: id
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
+  ReviewFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: app.controller.review_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ReviewTable
+      Events:
+        Review:
+          Type: Api
+          Properties:
+            Path: /reviews
+            Method: get
+            RequestParameters:
+              method.request.querystring.subject_id:
+                Required: true
+  ReviewTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ReviewTable
+      AttributeDefinitions:
+        - AttributeName: subject_id
+          AttributeType: S
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: subject_id
+          KeyType: HASH
+        - AttributeName: id
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
   DynamoDBAccessPolicy:
     Type: AWS::IAM::Policy
     Properties:
@@ -70,7 +105,10 @@ Resources:
       Roles:
         - !Ref HealthFunctionRole
         - !Ref SubjectFunctionRole
-            
+      Roles:
+        - !Ref HealthFunctionRole
+        - !Ref SubjectFunctionRole
+        
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
@@ -86,7 +124,7 @@ Outputs:
     Value: !GetAtt HealthFunctionRole.Arn
   SubjectApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/subjects?q=subject_name"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/subjects?q={subject_name}"
   SubjectFunction:
     Description: "Hello World Lambda Function ARN"
     Value: !GetAtt SubjectFunction.Arn
@@ -96,3 +134,15 @@ Outputs:
   SubjectTable:
     Description: "SubjectTable DynamoDB Table ARN"
     Value: !GetAtt SubjectTable.Arn
+  ReviewApi:
+    Description: "API Gateway endpoint URL for Prod stage for Review function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/reviews?subject_id={subject_id}"
+  ReviewFunction:
+    Description: "Review Lambda Function ARN"
+    Value: !GetAtt ReviewFunction.Arn
+  ReviewFunctionIamRole:
+    Description: "Implicit IAM Role created for Review function"
+    Value: !GetAtt ReviewFunctionRole.Arn
+  ReviewTable:
+    Description: "ReviewTable DynamoDB Table ARN"
+    Value: !GetAtt ReviewTable.Arn
