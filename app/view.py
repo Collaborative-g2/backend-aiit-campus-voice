@@ -9,3 +9,17 @@ def format_response(subjects):
         }
         for subject in subjects
     ]
+
+def format_review_response(reviews):
+    return [
+        {
+            "id": review.get("id"),
+            "subject_id": review.get("subject_id"),
+            "term": review.get("term"),
+            "rating": review.get("rating"),
+            "workload": review.get("workload"),
+            "comment": review.get("comment"),
+            "created": review.get("created")
+        }
+        for review in reviews
+    ]
