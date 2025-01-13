@@ -77,15 +77,27 @@ Resources:
       TableName: ReviewTable
       AttributeDefinitions:
         - AttributeName: subject_id
-          AttributeType: S
+          AttributeType: S  # 主キー（文字列）
         - AttributeName: id
-          AttributeType: S
+          AttributeType: S  # ソートキー（文字列）
+        - AttributeName: created
+          AttributeType: S  # GSIのソートキー（文字列）
       KeySchema:
         - AttributeName: subject_id
-          KeyType: HASH
+          KeyType: HASH  # 主キー
         - AttributeName: id
-          KeyType: RANGE
+          KeyType: RANGE  # ソートキー
       BillingMode: PAY_PER_REQUEST
+      GlobalSecondaryIndexes:
+        - IndexName: CreatedIndex
+          KeySchema:
+            - AttributeName: subject_id
+              KeyType: HASH
+            - AttributeName: created
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL  # 必要なすべての属性を含める
+  
   DynamoDBAccessPolicy:
     Type: AWS::IAM::Policy
     Properties:
@@ -101,13 +113,11 @@ Resources:
               - dynamodb:DeleteItem
               - dynamodb:Scan
               - dynamodb:Query
-            Resource: !GetAtt SubjectTable.Arn
+            Resource: !GetAtt ReviewTable.Arn  # 修正：ReviewTableに対応
       Roles:
         - !Ref HealthFunctionRole
         - !Ref SubjectFunctionRole
-      Roles:
-        - !Ref HealthFunctionRole
-        - !Ref SubjectFunctionRole
+
         
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
