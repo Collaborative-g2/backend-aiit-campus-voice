@@ -19,7 +19,8 @@ def get_reviews(subject_id=None):
             )
             print(f"DynamoDB Query Response: {response}")
         else:
-            response = review_table.scan()
+            response = review_table.scan(Limit=5)
+            #response = review_table.scan()
             print(f"DynamoDB Scan Response: {response}")
         
         items = response.get('Items', [])
