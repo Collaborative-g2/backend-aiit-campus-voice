@@ -113,7 +113,9 @@ Resources:
               - dynamodb:DeleteItem
               - dynamodb:Scan
               - dynamodb:Query
-            Resource: !GetAtt ReviewTable.Arn  # 修正：ReviewTableに対応
+            Resource: 
+              - !GetAtt ReviewTable.Arn  # 修正：ReviewTableに対応
+              - !GetAtt SubjectTable.Arn
       Roles:
         - !Ref HealthFunctionRole
         - !Ref SubjectFunctionRole
