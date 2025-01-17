@@ -1,0 +1,33 @@
+verageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: app.controller.average_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ReviewTable
+      Events:
+        Average:
+          Type: Api
+          Properties:
+            Path: /average
+            Method: get
+            RequestParameters:
+              method.request.querystring.subject_id:
+                Required: true
+
+AverageApi:
+    Description: "API Gateway endpoint URL for Prod stage for Review function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/reviews?subject_id={subject_id}"
+  AverageFunction:
+    Description: "Review Lambda Function ARN"
+    Value: !GetAtt ReviewFunction.Arn
+  AverageFunctionIamRole:
+    Description: "Implicit IAM Role created for Review function"
+    Value: !GetAtt ReviewFunctionRole.Arn
+  AverageTable:
+    Description: "ReviewTable DynamoDB Table ARN"
+    Value: !GetAtt ReviewTable.Arn
