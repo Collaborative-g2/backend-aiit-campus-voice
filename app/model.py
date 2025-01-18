@@ -1,6 +1,7 @@
 import boto3
 from boto3.dynamodb.conditions import Key
 
+
 # DynamoDBクライアントの作成
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('SubjectTable')
@@ -61,3 +62,8 @@ def get_reviews(subject_id=None):
     except Exception as e:
         print(f"Error in get_reviews: {str(e)}")
         return []
+    
+
+# テーブルオブジェクトを取得
+def get_review_table():
+    return dynamodb.Table('ReviewTable')  # DynamoDBテーブル名を正しく設定
