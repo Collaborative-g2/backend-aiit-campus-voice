@@ -71,6 +71,44 @@ Resources:
             RequestParameters:
               method.request.querystring.subject_id:
                 Required: true
+
+  ReviewPostFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: app.controller.review_post_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ReviewTable
+      Events:
+        ReviewPost:
+          Type: Api
+          Properties:
+            Path: /review
+            Method: post
+
+  ReviewPostRequestModel:
+    Type: AWS::ApiGateway::Model
+    Properties:
+      RestApiId: !Ref ServerlessRestApi
+      ContentType: application/json
+      Schema:
+        type: object
+        properties:
+          subject_id:
+            type: string
+          content:
+            type: string
+          rating:
+            type: integer
+        required:
+          - subject_id
+          - content
+          - rating
+          
   ReviewTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -158,3 +196,6 @@ Outputs:
   ReviewTable:
     Description: "ReviewTable DynamoDB Table ARN"
     Value: !GetAtt ReviewTable.Arn
+  ReviewPostRequestModel:
+    Description: "API Gateway Model for validating POST requests to the /reviews endpoint"
+    Value: !Ref ReviewPostRequestModel
