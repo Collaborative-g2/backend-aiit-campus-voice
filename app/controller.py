@@ -50,7 +50,14 @@ def review_handler(event, context):
         # レビューを取得
         reviews = get_reviews(subject_id)
         print(f"Reviews: {reviews}")
-
+        
+        # 平均 rating を計算
+        average_rating = (
+            sum(review.get("rating", 0) for review in reviews) / len(reviews)
+            if reviews else 0
+        )
+        print(f"Average rating: {average_rating}")
+        
         # 整形されたレスポンスを返す
         return {
             "statusCode": 200,
@@ -58,7 +65,10 @@ def review_handler(event, context):
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
             },
-            "body": json.dumps(format_review_response(reviews))
+            "body": json.dumps({
+                "reviews": format_review_response(reviews),
+                "average_rating": round(average_rating, 2)  # 小数点2桁で丸める
+            })
         }
     except Exception as e:
         print(f"Error: {str(e)}")
