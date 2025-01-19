@@ -19,7 +19,9 @@ def format_review_response(reviews):
             "rating": review.get("rating"),
             "workload": review.get("workload"),
             "comment": review.get("comment"),
-            "created": review.get("created")
+            "created": review.get("created"),
+            "subject_name": review.get("subject_name"),
+            "professor": review.get("professor")
         }
         for review in reviews
     ]
