@@ -44,6 +44,25 @@ def get_reviews(subject_id=None):
         items = response.get('Items', [])
         print(f"Raw Items: {items}")
 
+         # review_table の subject_id に紐づく SubjectTable のデータを取得
+        subject_ids = {item.get('subject_id') for item in items if 'subject_id' in item}
+        print(f"subject_ids: {subject_ids}")
+        subject_data = {}
+
+        for subject_id in subject_ids:
+            # SubjectTable の subject_id に基づいてデータを取得
+            subject_response = table.query(
+                IndexName="SubjectIndex",
+                KeyConditionExpression=Key('subject_id').eq(subject_id)
+            )
+            print(f"subject_response: {subject_response}")
+            if 'Items' in subject_response and subject_response['Items']:
+                subject = subject_response['Items'][0]  # クエリ結果の最初のアイテムを取得
+                subject_data[subject_id] = {
+                    'subject_name': subject.get('subject_name', ''),
+                    'professor': subject.get('professor', '')
+                }
+
         formatted_items = [
             {
                 'id': item.get('id', ''),
@@ -52,7 +71,9 @@ def get_reviews(subject_id=None):
                 'rating': float(item.get('rating', 0)),  # Decimalをfloatに変換
                 'workload': item.get('workload', ''),
                 'comment': item.get('comment', ''),
-                'created': item.get('created', '')
+                'created': item.get('created', ''),
+                'subject_name': subject_data.get(item.get('subject_id'), {}).get('subject_name', ''),
+                'professor': subject_data.get(item.get('subject_id'), {}).get('professor', '')
             }
             for item in items
         ]

@@ -47,10 +47,19 @@ Resources:
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
+        - AttributeName: subject_id  # GSI用の属性を追加
+          AttributeType: S
       KeySchema:
         - AttributeName: id
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
+      GlobalSecondaryIndexes:
+        - IndexName: SubjectIndex  # GSI名
+          KeySchema:
+            - AttributeName: subject_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL  # 必要な項目をすべて取得
   ReviewFunction:
     Type: AWS::Serverless::Function
     Properties:
