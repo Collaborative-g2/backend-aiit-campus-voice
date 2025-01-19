@@ -8,7 +8,7 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 10
     MemorySize: 128
 
 Resources:
@@ -163,10 +163,11 @@ Resources:
             Resource: 
               - !GetAtt ReviewTable.Arn  # 修正：ReviewTableに対応
               - !GetAtt SubjectTable.Arn
+              - !Sub "${SubjectTable.Arn}/index/SubjectIndex"
       Roles:
         - !Ref HealthFunctionRole
         - !Ref SubjectFunctionRole
-
+        - !Ref ReviewFunctionRole
         
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
